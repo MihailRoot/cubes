@@ -16,11 +16,11 @@ jobs:
           - 2021.3.2f1
         targetPlatform:
           #- StandaloneOSX
-          #- StandaloneWindows
-          #- StandaloneWindows64
+          - StandaloneWindows
+          - StandaloneWindows64
           - StandaloneLinux64
           #- iOS
-          #- Android
+          - Android
           #- WebGL
           
     steps:
