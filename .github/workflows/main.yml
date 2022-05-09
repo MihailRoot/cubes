@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - gAmE
+          - the_bread_simulator
         unityVersion:
           - 2021.3.2f1
         targetPlatform:
@@ -65,4 +65,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
-          path: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          path: build
