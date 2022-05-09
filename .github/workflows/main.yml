@@ -15,13 +15,13 @@ jobs:
         unityVersion:
           - 2021.3.2f1
         targetPlatform:
-          #- StandaloneOSX
+          - StandaloneOSX
           - StandaloneWindows
           - StandaloneWindows64
           - StandaloneLinux64
           #- iOS
-          - Android
-          #- WebGL
+          #- Android
+          - WebGL
           
     steps:
       - uses: actions/checkout@v2
