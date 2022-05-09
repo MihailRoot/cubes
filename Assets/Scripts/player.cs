@@ -26,10 +26,7 @@ public class player : MonoBehaviour
         //body.velocity = (transform.forward * vertical) * speed * Time.fixedDeltaTime;
         body.velocity = (-transform.up * vertical) * speed * Time.fixedDeltaTime;
         transform.Rotate((transform.forward * horizontal) * rotationSpeed * Time.fixedDeltaTime);
-        // transform.Rotate((transform.up * horizontal) * rotationSpeed * Time.fixedDeltaTime);
-        if (Input.GetKey(("escape")))
-        {
-            Application.Quit();
-        }
+        // transform.Rotate((transform.up * horizontal) * rotationSpeed * Time.fixedDeltaTime
+        
     }
 }
