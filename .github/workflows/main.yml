@@ -64,5 +64,5 @@ jobs:
           
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
-          path: build
+          name: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          path: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
