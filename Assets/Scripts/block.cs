@@ -13,6 +13,7 @@ public class block : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Молодец");
+        Application.Quit();
     }
     // Update is called once per frame
     void Update()

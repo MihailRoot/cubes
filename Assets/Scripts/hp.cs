@@ -6,13 +6,12 @@ public class hp : MonoBehaviour
 
 {
     public Image bar;
-    public float fill;
+    public float fill = 1f;
 
     public float xp = 0.0001f;
     // Start is called before the first frame update
     void Start()
     {
-        fill = 1f;
 
     }
 
@@ -20,6 +19,11 @@ public class hp : MonoBehaviour
     void Update()
     {
         fill -= Time.deltaTime *  xp;
-        bar.fillAmount = fill; 
+        bar.fillAmount = fill;
+         if (fill < 0)
+         {
+            Debug.Log("Вы програли!");
+            Application.Quit();
+         }
     }
 }
