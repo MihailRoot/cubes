@@ -33,7 +33,7 @@ public class player : MonoBehaviour
         // transform.Rotate((transform.up * horizontal) * rotationSpeed * Time.fixedDeltaTim
         body.AddForce(Physics.gravity * (gravityforce - 1) *body.mass);
     }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && is_groud)
