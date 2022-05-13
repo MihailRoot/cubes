@@ -3,7 +3,7 @@ name: Unity Build Project
 on:
   push:
     branches:    
-      - '!releases/**'
+      - 'releases/**'
       
 jobs:
   createRelease:
