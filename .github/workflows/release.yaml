@@ -29,9 +29,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.TIME }}
-          release_name: Pre-release build ${{ env.TIME }}
+          release_name: Release ${{ env.TIME }}
           draft: false
-          prerelease: true
+          prerelease: false
           
     
     
