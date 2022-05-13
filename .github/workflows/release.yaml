@@ -19,6 +19,11 @@ jobs:
     steps:
       - run: echo "TIME=$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
       
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/release/})"
+        id: extract_branch
+        
       - id: timeshare
         run: echo "::set-output name=TIME::"${{ env.TIME }}
 
@@ -29,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.TIME }}
-          release_name: Release ${{ env.TIME }}
+          release_name: Release ${{ steps.extract_branch.outputs.branch }}
           draft: false
           prerelease: false
           
