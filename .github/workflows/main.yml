@@ -1,11 +1,46 @@
 name: Unity Build Project
 
-on: [push]
-
+on:
+  push:
+    branches:    
+      - '!releases/**'
+      
 jobs:
-  buildAndTestForLinuxBasedPlatforms:
+  createRelease:
+    name: Create Release
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      
+    outputs:
+      output: ${{ steps.timeshare.outputs.TIME }}
+      
+    steps:
+      - run: echo "TIME=$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+      
+      - id: timeshare
+        run: echo "::set-output name=TIME::"${{ env.TIME }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TIME }}
+          release_name: Release ${{ env.TIME }}
+          draft: false
+          prerelease: true
+          
+    
+    
+  buildForPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    
+    needs:
+      - createRelease
     
     strategy:
       fail-fast: false
@@ -21,7 +56,7 @@ jobs:
           - StandaloneLinux64
           #- iOS
           #- Android
-          - WebGL
+          #- WebGL
           
     steps:
       - uses: actions/checkout@v2
@@ -62,7 +97,16 @@ jobs:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           
+      - run: cd build && zip -9 -r ../${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip * && cd ..
+          
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
           path: build
+
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          tag: ${{ needs.createRelease.outputs.output }}
+          artifacts: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
