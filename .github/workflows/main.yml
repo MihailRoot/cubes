@@ -110,4 +110,3 @@ jobs:
           tag: ${{ needs.createRelease.outputs.output }}
           artifacts: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
-  f
