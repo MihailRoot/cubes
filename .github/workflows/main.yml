@@ -2,7 +2,8 @@ name: Unity Build Project
 
 on:
   push:
-    branches:    
+    branches:
+      - '*'
       - '!releases/**'
       
 jobs:
