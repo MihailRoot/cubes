@@ -18,8 +18,7 @@ public class block : MonoBehaviour
         Debug.Log("Молодец");
         level = true;
     }
-     #
-    void OnGUI()
+     void OnGUI()
     {
         //Проверяем завершение lv и выводим gui
         if (level == true)
