@@ -23,6 +23,7 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+    //faf
         speed = 30f;
         rotationSpeed = 50f;
         vertical = Input.GetAxis("Vertical");
