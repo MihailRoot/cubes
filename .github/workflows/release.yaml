@@ -109,9 +109,15 @@ jobs:
           name: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
           path: build
 
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/releases/})"
+        id: extract_branch
+
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
           tag: ${{ needs.createRelease.outputs.output }}
+          name: Release ${{ steps.extract_branch.outputs.branch }}
           artifacts: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
