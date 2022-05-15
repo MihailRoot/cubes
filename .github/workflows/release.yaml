@@ -21,7 +21,7 @@ jobs:
       
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/release/})"
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/releases/})"
         id: extract_branch
         
       - id: timeshare
