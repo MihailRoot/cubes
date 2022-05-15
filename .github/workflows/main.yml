@@ -109,6 +109,7 @@ jobs:
         with:
           allowUpdates: true
           name: Pre-release build ${{ needs.createRelease.outputs.output }}
+          prerelease: true
           tag: ${{ needs.createRelease.outputs.output }}
           artifacts: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
