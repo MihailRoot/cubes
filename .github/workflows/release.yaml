@@ -1,4 +1,4 @@
-name: Unity Build Project
+name: Unity Build Release
 
 on:
   push:
