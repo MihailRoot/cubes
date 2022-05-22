@@ -11,6 +11,7 @@ public class camerafirstlv : MonoBehaviour
     private float rotationY;
     private float rotationX;
     private Vector3 previousPosition;
+    public Vector3 offset; 
     
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,8 @@ public class camerafirstlv : MonoBehaviour
               cam.transform.Rotate(new Vector3(0,1,0), rotationAroundYAxis,Space.World);
               cam.transform.Translate(new Vector3(0,0,-distance));
               previousPosition = newposition;
+              
           }
+          transform.position = target.position + offset;
     }
 }

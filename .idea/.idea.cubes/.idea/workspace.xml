@@ -19,6 +19,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/player1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/play.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/b8d6cd0af8a94dfb90e5122af2faf96e11c00/8c/9ab00854/02000004pdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HowToplay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/github.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="28tpRSXxmg0giOBThPFBHeC7HlM" />
@@ -28,7 +29,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35054773" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35022026" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -56,10 +57,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16520">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="16520" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -101,7 +102,10 @@
       <workItem from="1652814902429" duration="4093000" />
       <workItem from="1652874358878" duration="986000" />
       <workItem from="1652875382129" duration="1524000" />
-      <workItem from="1652876943406" duration="8200000" />
+      <workItem from="1652876943406" duration="8676000" />
+      <workItem from="1652904770025" duration="421000" />
+      <workItem from="1652972276766" duration="3655000" />
+      <workItem from="1653077121318" duration="5000" />
     </task>
     <servers />
   </component>
