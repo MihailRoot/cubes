@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class block : MonoBehaviour
 {
     public bool level = false;
@@ -26,7 +26,7 @@ public class block : MonoBehaviour
             Debug.Log(level);
             GUI.Label(new Rect(400, 200, 200, 50), "ПЕРВЫЙ УРОВЕНЬ ПРОЙДЕТ!");
             new System.Timers.Timer(10000);
-            Application.Quit();
+            SceneManager.LoadScene(3);
         }
 
     }
