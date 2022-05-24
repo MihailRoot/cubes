@@ -17,6 +17,11 @@ public class block : MonoBehaviour
         //Активируем bool level
         Debug.Log("Молодец");
         level = true;
+<<<<<<< Updated upstream
+=======
+        //new System.Timers.Timer(10000);
+        SceneManager.LoadScene(2,LoadSceneMode.Single);
+>>>>>>> Stashed changes
     }
     void OnGUI()
     {
