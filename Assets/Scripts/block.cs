@@ -19,7 +19,7 @@ public class block : MonoBehaviour
         level = true;
 
         //new System.Timers.Timer(10000);
-        SceneManager.LoadScene(2,LoadSceneMode.Single);
+        SceneManager.LoadScene(3,LoadSceneMode.Single);
     }
     void OnGUI()
     {
