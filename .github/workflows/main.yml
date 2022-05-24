@@ -1,0 +1,115 @@
+name: Unity Build Project
+
+on:
+  push:
+    branches:
+      - '*'
+      - '!releases/**'
+      
+jobs:
+  createRelease:
+    name: Create Release
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false
+      
+    outputs:
+      output: ${{ steps.timeshare.outputs.TIME }}
+      
+    steps:
+      - run: echo "TIME=$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+      
+      - id: timeshare
+        run: echo "::set-output name=TIME::"${{ env.TIME }}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TIME }}
+          release_name: Pre-release build ${{ env.TIME }}
+          draft: false
+          prerelease: true
+          
+    
+    
+  buildForPlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    
+    needs:
+      - createRelease
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - the_bread_simulator
+        unityVersion:
+          - 2021.3.2f1
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows
+          - StandaloneWindows64
+          - StandaloneLinux64
+          #- iOS
+          #- Android
+          #- WebGL
+          
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+          
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+            
+#       - uses: game-ci/unity-test-runner@v2
+#         id: testRunner
+#         env:
+#           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+#         with:
+#           unityVersion: ${{ matrix.unityVersion }}
+#           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          
+#       - uses: actions/upload-artifact@v2
+#         if: always()
+#         with:
+#           name: Test results (all modes)
+#           path: ${{ steps.testRunner.outputs.artifactsPath }}
+          
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          buildName: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          allowDirtyBuild: true
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          
+      - run: cd build && zip -9 -r ../${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip * && cd ..
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          path: build
+
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: Pre-release build ${{ needs.createRelease.outputs.output }}
+          prerelease: true
+          tag: ${{ needs.createRelease.outputs.output }}
+          artifacts: ${{ matrix.projectPath }}-${{ matrix.targetPlatform }}.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
