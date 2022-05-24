@@ -26,11 +26,11 @@ public class block : MonoBehaviour
             Debug.Log(level);
             GUI.Label(new Rect(400, 200, 200, 50), "ПЕРВЫЙ УРОВЕНЬ ПРОЙДЕТ!");
             new System.Timers.Timer(10000);
-            SceneManager.LoadScene("Level-1");
+            SceneManager.LoadScene(2);//
         }
 
     }
-    // Update is called once per frame//
+    // Update is called once per frame
     void Update()
     {
         
