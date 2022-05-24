@@ -18,7 +18,7 @@ public class block : MonoBehaviour
         Debug.Log("Молодец");
         level = true;
         new System.Timers.Timer(10000);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(2,LoadSceneMode.Single);
     }
     void OnGUI()
     {
