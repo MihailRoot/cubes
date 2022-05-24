@@ -45,7 +45,7 @@ public class player : MonoBehaviour
         {
             transform.Rotate((transform.forward * horizontal) * rotationSpeed * Time.fixedDeltaTime);
 
-        }
+        }//
     }
     
     void Update()
