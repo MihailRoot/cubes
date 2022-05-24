@@ -5254,6 +5254,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4a27256b34339a4187748376840999b, type: 3}
+--- !u!1 &833126432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4252702714118357385, guid: d4a27256b34339a4187748376840999b, type: 3}
+  m_PrefabInstance: {fileID: 833126431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &833126433
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833126432}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000002, y: 2, z: 2.0000002}
+  m_Center: {x: 0, y: 0.0000009536743, z: 0}
 --- !u!1 &834737720
 GameObject:
   m_ObjectHideFlags: 0
@@ -10499,7 +10517,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598817589}
   m_LocalRotation: {x: -0, y: 0.8269305, z: -0, w: 0.5623042}
-  m_LocalPosition: {x: 527.4, y: 18.7, z: -241.4}
+  m_LocalPosition: {x: 527.4, y: 16.48, z: -241.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
