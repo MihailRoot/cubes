@@ -14,11 +14,11 @@ public class Connect : MonoBehaviourPunCallbacks
     // Update is called once per frame
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby();
+        SceneManager.LoadScene("Connect_to_server");
     }
-    public override void OnJoinedLobby()
+  /*  public override void OnJoinedLobby()
     {
-        SceneManager.LoadScene("Lobby");
-    }
+        SceneManager.LoadScene("Connect_to_server");
+    }*/
 
 }

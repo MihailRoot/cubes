@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 
 public class player : MonoBehaviour
 {
@@ -14,8 +14,7 @@ public class player : MonoBehaviour
     public float jump = 20;
     //public Vector3 offset;
     // public Vector3 pos;
-    public float gravityforce = 5;
-    
+    public float gravityforce = 5;    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,27 +24,27 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-    //faf
-        speed = 30f;
-        rotationSpeed = 50f;
-        vertical = Input.GetAxis("Vertical");
-        horizontal = Input.GetAxis("Horizontal");//Получение координат
-        //body.velocity = (transform.forward * vertical) * speed * Time.fixedDeltaTime;
-        if (vertical != 0)
-        {
-            body.velocity = (-transform.up * vertical) * speed * Time.fixedDeltaTime;
-            // transform.Rotate((transform.up * horizontal) * rotationSpeed * Time.fixedDeltaTim
-            //body.AddForce(Physics.gravity * (gravityforce - 1) * body.mass);
-            // if (Input.GetKeyDown(KeyCode.E))
-            // {
-            //     transform.position + transform.right * -transform.localScale / 2;
-            // }
-        }
-        if(horizontal != 0)
-        {
-            transform.Rotate((transform.forward * horizontal) * rotationSpeed * Time.fixedDeltaTime);
+            //faf
+            speed = 30f;
+            rotationSpeed = 50f;
+            vertical = Input.GetAxis("Vertical");
+            horizontal = Input.GetAxis("Horizontal");//Получение координат
+                                                     //body.velocity = (transform.forward * vertical) * speed * Time.fixedDeltaTime;
+            if (vertical != 0)
+            {
+                body.velocity = (-transform.up * vertical) * speed * Time.fixedDeltaTime;
+                // transform.Rotate((transform.up * horizontal) * rotationSpeed * Time.fixedDeltaTim
+                //body.AddForce(Physics.gravity * (gravityforce - 1) * body.mass);
+                // if (Input.GetKeyDown(KeyCode.E))
+                // {
+                //     transform.position + transform.right * -transform.localScale / 2;
+                // }
+            }
+            if (horizontal != 0)
+            {
+                transform.Rotate((transform.forward * horizontal) * rotationSpeed * Time.fixedDeltaTime);
 
-        }
+            }
     }
     
     void Update()
