@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class camerafirstlv : MonoBehaviour
 {
     public Transform target;
@@ -11,14 +11,15 @@ public class camerafirstlv : MonoBehaviour
     private float rotationY;
     private float rotationX;
     private Vector3 previousPosition;
-    public Vector3 offset; 
-    
+    public Vector3 offset;
+    PhotonView view;
     // Start is called before the first frame update
     void Start()
     {
-       // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
         // offset = transform.position - target.transform.position;
         // Mousespeed = 10;
+        view = GetComponent<PhotonView>();
     }
 
     void LateUpdate()
@@ -27,6 +28,7 @@ public class camerafirstlv : MonoBehaviour
         // MouseY = -Input.GetAxis("Mouse Y") * Mousespeed * Time.deltaTime;
         // transform.rotation *= Quaternion.Euler(MouseX, MouseY, 0);
         // transform.position = target.transform.position + offset;
+
     }
     // Update is called once per frame
     void Update()
@@ -37,28 +39,31 @@ public class camerafirstlv : MonoBehaviour
         // rotationX += mouseX;
         // rotationY += mouseY;
         // transform.localEulerAngles = new Vector3(rotationX, rotationY, 0f);
-         // transform.position = target.transform.position + new Vector3(0, 1, -5);
-          // Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-          // pos.x = Mathf.Clamp01(pos.x);
-          // pos.y = Mathf.Clamp01(pos.y);
-          // transform.position = Camera.main.WorldToViewportPoint(pos);
-          if (Input.GetMouseButtonDown(0))
-          {
-              previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
-          }
-          else if(Input.GetMouseButton(0))
-          {
-              Vector3 newposition = cam.ScreenToViewportPoint(Input.mousePosition);
-              Vector3 direction = previousPosition - newposition;
-              float rotationAroundYAxis = -direction.x * 180;
-              float rotationAroundXAxis = direction.x * 180;
-              cam.transform.position = target.position;
-              cam.transform.Rotate(new Vector3(1,0,0),rotationAroundXAxis);
-              cam.transform.Rotate(new Vector3(0,1,0), rotationAroundYAxis,Space.World);
-              cam.transform.Translate(new Vector3(0,0,-distance));
-              previousPosition = newposition;
-              
-          }
-          transform.position = target.position + offset;
+        // transform.position = target.transform.position + new Vector3(0, 1, -5);
+        // Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        // pos.x = Mathf.Clamp01(pos.x);
+        // pos.y = Mathf.Clamp01(pos.y);
+        // transform.position = Camera.main.WorldToViewportPoint(pos);
+        if (view.IsMine)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                previousPosition = cam.ScreenToViewportPoint(Input.mousePosition);
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                Vector3 newposition = cam.ScreenToViewportPoint(Input.mousePosition);
+                Vector3 direction = previousPosition - newposition;
+                float rotationAroundYAxis = -direction.x * 180;
+                float rotationAroundXAxis = direction.x * 180;
+                cam.transform.position = target.position;
+                cam.transform.Rotate(new Vector3(1, 0, 0), rotationAroundXAxis);
+                cam.transform.Rotate(new Vector3(0, 1, 0), rotationAroundYAxis, Space.World);
+                cam.transform.Translate(new Vector3(0, 0, -distance));
+                previousPosition = newposition;
+
+            }
+            transform.position = target.position + offset;
+        }
     }
 }

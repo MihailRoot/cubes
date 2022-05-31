@@ -157,5 +157,5 @@ MonoBehaviour:
   speed: 0
   rotationSpeed: 0
   is_groud: 0
-  jump: 20
-  gravityforce: 5
+  jump: 40
+  gravityforce: 10
