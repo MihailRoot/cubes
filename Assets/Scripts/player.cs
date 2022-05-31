@@ -14,16 +14,20 @@ public class player : MonoBehaviour
     public float jump = 20;
     //public Vector3 offset;
     // public Vector3 pos;
-    public float gravityforce = 5;    
+    public float gravityforce = 5;
     // Start is called before the first frame update
+    PhotonView view;
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (view.IsMine)
+        {
             //faf
             speed = 30f;
             rotationSpeed = 50f;
@@ -45,13 +49,17 @@ public class player : MonoBehaviour
                 transform.Rotate((transform.forward * horizontal) * rotationSpeed * Time.fixedDeltaTime);
 
             }
+        }
     }
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && is_groud)
+        if (view.IsMine)
         {
-           body.AddForce(Vector3.up  * jump,ForceMode.Impulse);
+            if (Input.GetKeyDown(KeyCode.Space) && is_groud)
+            {
+                body.AddForce(Vector3.up * jump, ForceMode.Impulse);
+            }
         }
     }
 }
