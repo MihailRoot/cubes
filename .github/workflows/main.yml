@@ -56,7 +56,7 @@ jobs:
           - StandaloneWindows64
           - StandaloneLinux64
           #- iOS
-          #- Android
+          - Android
           #- WebGL
           
     steps:
